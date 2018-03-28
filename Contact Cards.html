@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>Contact Cards</title>
+    <script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <script>
+        $(document).ready(function(){
+            $('form').submit(function(){
+                var first=$("#first").val()
+                var last=$("#last").val()
+                var desc=$("#desc").val()
+                $("#cards").append("<div class=cards data-one='"+desc+"' data-two='"+first+" "+last+"'><h1>"+first+" "+last+"</h1></div>");
+                return false
+            })
+            $(document).on("click", ".cards", function(){
+                var show=$(this).attr('data-one')
+                var hide=$(this).attr('data-two')
+                $(this).html("<h1>"+show+"</h1>");
+                $(this).attr("data-one",""+hide+"");
+                $(this).attr("data-two",""+show+"");
+            })
+        });
+    </script>
+    <style>
+        body{
+            width:1000px;
+        }
+        form{
+            float:left;
+            text-align: right;
+        }
+        form span{
+            display: block;
+        }
+        form h1{
+            text-align:left;
+        }
+        #cards{
+            float:right;
+        }
+        .cards{
+            border-style: solid;
+            width: 300px;
+            height: 200px;
+            border-width: 1px;
+            display: block;
+            padding: 40px;
+            padding-left:60px;
+            padding-right:60px;
+        }
+    </style>
+</head>
+<body>
+    <div id="bg">
+        <form>
+            <h1>Create Card</h1>
+            <hr>
+            <span>First Name: <input type="text" id=first name="first-name" placeholder="First Name"></span>
+            <span>Last Name: <input type="text" id=last name="last-name" placeholder="Last Name"></span>
+            <span>Description: <input type="textarea" id=desc name="desc" placeholder="Describe Yourself!"></span>
+            <input type="submit" value="Create">
+        </form>
+        <div id="cards">
+        </div>
+    </div>
+</body>
+</html>
